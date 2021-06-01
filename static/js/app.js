@@ -38,7 +38,7 @@ function getPrice() {
         
         console.log(resultGraphx);
         console.log(resultGraphy);
-        //creatGraph(resultGraphx,resultGraphy)
+        createGraph(resultGraphx,resultGraphy)
         //createGraph(resultGraphy)
 
     });
@@ -47,15 +47,16 @@ getPrice();
 
 //********************************** */
 //creat graph
-/*function createGraph(){
+function createGraph(resultGraphx,resultGraphy){
     var trace1 = {
         x: resultGraphx,
         y: resultGraphy,
-        mode: 'markers',
-        marker: {
-          size: resultGraphy
+        type: "bar",
+        text:resultGraphy,
+        /*marker: {
+          size: resultGraphx
     
-        }
+        }*/
     
     };
     
@@ -64,14 +65,14 @@ getPrice();
     var layout = {
         title: 'crypto Size',
         showlegend: false,
-        height: 600,
-        width: 600
+        height: 800,
+        width: 1000
     };
 
     Plotly.newPlot('bubble', data, layout);
       
 
-};*/
+};
 
 //********************************** */
 //transfer the data into the table
