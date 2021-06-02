@@ -53,20 +53,21 @@ function createGraph(resultGraphx,resultGraphy){
         y: resultGraphy,
         type: "bar",
         text:resultGraphy,
-        /*marker: {
-          size: resultGraphx
+        marker: {
+          //size: resultGraphx,
+          color: ["orange","doge","blue","black"]
     
-        }*/
+        }
     
     };
     
     var data = [trace1];
     
     var layout = {
-        title: 'crypto Size',
+        title: 'crypto Prices real time',
         showlegend: false,
         height: 800,
-        width: 1000
+        width: 1000,
     };
 
     Plotly.newPlot('bubble', data, layout);
@@ -96,3 +97,131 @@ function handleClickAll() {
     });
     //console.log(tableData);
 };
+
+function makeplot() {
+    d3.csv("static/historyCoin/BTC_USD_2021-02-27_2021-05-26-CoinDesk.csv").then(d=>processData(d));
+
+  function processData(allRows) {
+  
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+  
+    for (var i=0; i<allRows.length; i++) {
+      row = allRows[i];
+      x.push( row['Date'] );
+      y.push( Number(row['Closing Price (USD)']) );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+  }
+  
+  function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+      x: x,
+      y: y
+    }];
+  
+    Plotly.newPlot('myDivBTC', traces,
+      {title: 'BTC graph'});
+  };
+
+};
+
+makeplot();
+
+function makeplotETH() {
+    d3.csv("static/historyCoin/ETH_USD_2021-02-27_2021-05-26-CoinDesk.csv").then(d=>processData(d));
+
+  function processData(allRows) {
+  
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+  
+    for (var i=0; i<allRows.length; i++) {
+      row = allRows[i];
+      x.push( row['Date'] );
+      y.push( Number(row['Closing Price (USD)']) );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+  }
+  
+  function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+      x: x,
+      y: y
+    }];
+  
+    Plotly.newPlot('myDivETH', traces,
+      {title: 'ETH graph'});
+  };
+
+};
+
+makeplotETH();
+
+function makeplotXPR() {
+    d3.csv("static/historyCoin/XRP_USD_2021-05-27-CoinDesk.csv").then(d=>processData(d));
+
+  function processData(allRows) {
+  
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+  
+    for (var i=0; i<allRows.length; i++) {
+      row = allRows[i];
+      x.push( row['Date'] );
+      y.push( Number(row['Closing Price (USD)']) );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+  }
+  
+  function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+      x: x,
+      y: y
+    }];
+  
+    Plotly.newPlot('myDivXPR', traces,
+      {title: 'XPR graph'});
+  };
+
+};
+
+makeplotXPR();
+
+function makeplotDoge() {
+    d3.csv("static/historyCoin/DOGE-USD (1).csv").then(d=>processData(d));
+
+  function processData(allRows) {
+  
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+  
+    for (var i=0; i<allRows.length; i++) {
+      row = allRows[i];
+      x.push( row['Date'] );
+      y.push( Number(row['Close']) );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+  }
+  
+  function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+      x: x,
+      y: y
+    }];
+  
+    Plotly.newPlot('myDivDOGE', traces,
+      {title: 'BTC graph'});
+  };
+
+};
+
+makeplotDoge();
