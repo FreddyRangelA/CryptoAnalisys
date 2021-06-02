@@ -4,3 +4,4 @@
 Scope:
   - Visualizations
   - Data colection 
+![image](https://user-images.githubusercontent.com/25973930/120416579-fe702980-c322-11eb-82ec-348b7aabc8c4.png)
