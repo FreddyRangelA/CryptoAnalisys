@@ -19,6 +19,6 @@ var layout = {
   title: 'Date vs. Reddit Submissions with name Elon',
 };
 
-Plotly.newPlot('myDiv', dataset, layout);
+Plotly.newPlot('elonDiv', dataset, layout);
 
 })

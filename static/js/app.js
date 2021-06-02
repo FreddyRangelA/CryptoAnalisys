@@ -19,16 +19,25 @@ function getPrice() {
     })
     .then(function (x) {
 
-        //console.log(x)
+        console.log(x)
         var resoltsBTC=x.filter(coin=>coin.symbol_id.includes("BTC_USD"));
         var resoltsDOGE=x.filter(coin=>coin.symbol_id.includes("DOGE_USDT"));
         var resoltsETH=x.filter(coin=>coin.symbol_id.includes("ETH_USD"));
         var resoltsXRP=x.filter(coin=>coin.symbol_id.includes("XRP_USDT"));
-        
+
+       if (resoltsBTC.length >0){
         btcPrice.push(resoltsBTC[0]);
+       } 
+       if (resoltsDOGE.length >0){
         btcPrice.push(resoltsDOGE[0]);
+       }  
+       if (resoltsETH.length >0){
         btcPrice.push(resoltsETH[0]);
+       } 
+       if (resoltsXRP.length >0){
         btcPrice.push(resoltsXRP[0]);
+       } 
+
         return btcPrice;
     })
     .then(() => {
@@ -225,3 +234,27 @@ function makeplotDoge() {
 };
 
 makeplotDoge();
+
+d3.csv("static/historyCoin/redditElonmentions5.csv").then(function(data){
+
+    var title = data.map(row => Number(row.title));
+    var time = data.map(row => row.time);
+    
+    var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'Elon Submissions',
+      x: time,
+      y: title,
+      line: {color: '#17BECF'}
+    }
+    
+    var dataset = [trace1];
+    
+    var layout = {
+      title: 'Date vs. Reddit Submissions with name Elon',
+    };
+    
+    Plotly.newPlot('elonDiv', dataset, layout);
+    
+});
